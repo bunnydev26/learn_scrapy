@@ -1,0 +1,30 @@
+What we have done in this Excercise.
+First we created a new project named quotes_spider
+Command
+- scrapy startproject quotes_spider
+
+We create a spider for the website http://quotes.toscrape.com/
+To create a spider
+- Command: scrapy genspider <scrapy_name> <domain_name>
+- scrapy genspider quotes quotes.toscrape.com
+
+We can use the interative shell to check how we get the data.
+There are two things that we can use in scrapy to get through the
+data one is xpath and the other is css selectors.
+Mostly used are xpath.
+
+# This returns a selector object having that text value
+response.xpath("//h1/a/text()")
+To extract the information from the above response just use the .extract() and it will return a list.
+If you want a single element and not a list use extract_first()
+
+# This is to select all the elements with a given css.
+response.xpath("//*[@class='']")
+response.xpath("//*[@id='']")
+
+# Chaining the multiple tags.
+response.xpath("//span[@class='tag-item']//*[@class='tag']/text()").extract()
+
+# Once you have added some data points to be scraped in your Spider
+# the command to crawl them are
+scrapy crawl <spider_name>
